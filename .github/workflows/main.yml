@@ -25,11 +25,11 @@ jobs:
           target: /var/www/html/react
       - name: Setup Directory & Permissions
         run: |
-          ssh -i /home/ubuntu/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }} <<'EOF'
-          sudo chmod 600 /home/ubuntu/.ssh/id_rsa
+          ssh -i /home/ubuntu/.ssh/Firstkey.pem -o StrictHostKeyChecking=no ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }} <<'EOF'
+          sudo chmod 600 /home/ubuntu/.ssh/Firstkey.pem
           sudo chown -R ${{ secrets.EC2_USERNAME }} /var/www/html/react
           tar -xzf /tmp/bsHHGTYRNP.tar.gz -C /var/www/html/react
           sudo chown -R www-data:www-data /var/www/html/react
           EOF
       - name: Restart NGINX
-        run: ssh -i /home/ubuntu/.ssh/id_rsa -o StrictHostKeyChecking=no ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }} "sudo systemctl restart nginx"
+        run: ssh -i /home/ubuntu/.ssh/Firstkey.pem -o StrictHostKeyChecking=no ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }} "sudo systemctl restart nginx"
