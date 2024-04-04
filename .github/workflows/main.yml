@@ -25,7 +25,7 @@ jobs:
           target: /var/www/html/react
       - name: Setup Directory & Permissions
         run: >
-          ssh -i "/home/ubuntu/.ssh/id_rsa" -o StrictHostKeyChecking=no ${{
+          ssh -i home/ubuntu/.ssh/id_rsa -o StrictHostKeyChecking=no ${{
           secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }} <<'EOF'
 
           sudo chmod 600 /home/ubuntu/.ssh/id_rsa
